@@ -1,0 +1,4 @@
+[05-Dec-2023 11:39:59 UTC] PHP Notice:  Undefined variable: sucursal in /home/mblogist/public_html/admin/cabecera.php on line 29
+[05-Dec-2023 11:40:00 UTC] PHP Notice:  Undefined variable: permiso in /home/mblogist/public_html/admin/cabecera.php on line 85
+[05-Dec-2023 11:40:00 UTC] PHP Notice:  Undefined variable: nombre in /home/mblogist/public_html/admin/cabecera.php on line 157
+[05-Dec-2023 11:40:00 UTC] PHP Notice:  Undefined variable: sucursal in /home/mblogist/public_html/admin/cabecera.php on line 160

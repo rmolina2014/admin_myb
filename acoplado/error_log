@@ -1,0 +1,3 @@
+[09-Aug-2023 17:01:51 UTC] PHP Notice:  Undefined index: aseguradora in /home/mblogist/public_html/admin/acoplado/nuevo.php on line 17
+[09-Aug-2023 17:01:51 UTC] PHP Notice:  Undefined variable: fabricacion in /home/mblogist/public_html/admin/acoplado/nuevo.php on line 31
+[09-Aug-2023 17:01:51 UTC] PHP Notice:  Undefined variable: registroautomotor in /home/mblogist/public_html/admin/acoplado/nuevo.php on line 32

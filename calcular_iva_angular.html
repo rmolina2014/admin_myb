@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Calcular el IVA con AngularJS</title>
+
+<!-- Última versión de bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+
+<style>
+body{padding-top:50px;}
+.container{max-width:900px;}
+</style>
+
+</head>
+
+<body ng-app>
+<div class="container">
+<div class="row">
+
+<div class="col-md-6" ng-init="iva1=16;psi1=0">
+  <b>Carlcular Precio mas IVA:</b>
+  <div>
+    Porcentaje IVA: <input type="number" min="0" ng-model="iva1">
+  </div>
+  <div>
+    Precio sin IVA: <input type="number" min="0" ng-model="psi1">
+  </div>
+  <div>
+    <b>IVA:</b> {{(iva1/100) * psi1 | currency}}
+  </div>
+  <div>
+    <b>Precio mas IVA:</b> {{(iva1/100) * psi1 + psi1| currency}}
+  </div>
+</div>
+
+
+
+<div class="col-md-6" ng-init="iva2=16;pci1=0">
+  <b>Desglosar el IVA:</b>
+  <div>
+    Porcentaje IVA: <input type="number" min="0" ng-model="iva2">
+  </div>
+  <div>
+    Precio con IVA: <input type="number" min="0" ng-model="pci1">
+  </div>
+  <div>
+    <b>IVA:</b> {{pci1-(pci1/(((iva2/100)+1))) | currency}}
+  </div>
+  <div>
+    <b>Precio sin IVA:</b> {{pci1 - (pci1 - (pci1/(((iva2/100)+1)))) | currency}}
+  </div>
+</div>
+
+</div>
+</div>
+</body>
+
+</html>
