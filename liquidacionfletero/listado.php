@@ -78,26 +78,26 @@
               <td><?php echo $item['estado'];?></td>
 
               <td>
-                <?
+                <?php
                   if ($item['porcentaje_fletero'] <> '' and $item['importe_fletero'] > 0  )
                   {
                     ?>
                     <a href="imprimir_liquidacion.php?idhrint=<?php echo $item['numero'];?>" class="btn btn-primary btn-sm" > Imprimir</a>
-                <? 
+                <?php 
                   }
                    else
                        {
                          ?>
                 
                          <a href="liquidacion.php?id=<?php echo $item['numero'];?>" class="btn btn-primary btn-sm" > Liquidación</a> 
-                         <?
+                         <?php
 
                        }
                  if ($item['porcentaje_fletero'] >0 and $item['importe_fletero'] > 0  )
                   {
                     ?>
                     <a href="liquidacion.php?id=<?php echo $item['numero'];?>" class="btn btn-primary btn-sm" > Editar</a>
-                    <?
+                    <?php
                  }    
                        
                 ?>
@@ -133,8 +133,6 @@
  </div><!-- /. PAGE INNER  -->
 
  </div><!-- /. PAGE WRAPPER  -->
-
- </div> <!-- /. WRAPPER  -->
 
   <script src="../js/jquery-1.10.2.js"></script>
 
@@ -265,11 +263,6 @@
         }
         })//fin ajax
         });//fin
-
-
-
-
-
 
  });
 

@@ -29,7 +29,7 @@ if( isset($_GET['id']) && !empty($_GET['id']) )
   <h4>Liquidacion Fletero -Hoja de Ruta Interna</h4>
    
   <div class="col-md-12">
-   <?
+   <?php
      $objecto = new liquidacionfletero();
      $listado = $objecto->cabecerahri($idhrint);
      while( $item = mysqli_fetch_array($listado))
@@ -39,16 +39,16 @@ if( isset($_GET['id']) && !empty($_GET['id']) )
 
       <div class="row">
 
-        <label> Numero : <?echo $numeroHRI=$item['numero'];?> </label>
+        <label> Numero : <?php echo $numeroHRI=$item['numero'];?> </label>
 
-        <input type="hidden" id="idhojarutainterna" value="<?echo $numeroHRI=$item['numero'];?>">
+        <input type="hidden" id="idhojarutainterna" value="<?php echo $numeroHRI=$item['numero'];?>">
 
-        <label> Fecha : <?echo $item['fecha'];?> </label>
+        <label> Fecha : <?php echo $item['fecha'];?> </label>
         <br>
 
-        <label> Chofer : <?echo $item['nombrechofer'];?> </label>
+        <label> Chofer : <?php echo $item['nombrechofer'];?> </label>
 
-        <label> Patente Camion : <?echo $item['patentecamion'];?> </label>
+        <label> Patente Camion : <?php echo $item['patentecamion'];?> </label>
         <br>
       </div>
       <br>
@@ -62,7 +62,7 @@ if( isset($_GET['id']) && !empty($_GET['id']) )
 
       </div>
 
-      <?
+      <?php
        }
        ?>
 
@@ -108,15 +108,17 @@ if( isset($_GET['id']) && !empty($_GET['id']) )
               <td><?php echo $item['bultos'];?></td>
               <td><?php echo $item['remitose'];?></td>
               <td>
-                <p>
-                  <span id="importe<?php echo $item['detalleinterna_id']; ?>">
-                      <?php
-                       if ($item['importe'] > 0)
-                       {
-                        echo money_format('%#10.2n', $item['importe']);
-                       } else echo $item['importe'];
-                      ?>
-                  </span>       
+  <p>
+    <span id="importe<?php echo $item['detalleinterna_id']; ?>">
+      <?php
+      if ($item['importe'] > 0) {
+        echo number_format($item['importe'], 2, ',', '.');
+      } else {
+        echo $item['importe'];
+      }
+      ?>
+    </span>
+    <!-- ... -->    
                 <button type="button" class="btn btn-primary btn-xs editar" data-toggle="modal" data-target="#myModal" value="<?php echo $item['detalleinterna_id'];?>">
                 <span class="glyphicon glyphicon-pencil"></span> Editar
                 </button>
@@ -127,7 +129,7 @@ if( isset($_GET['id']) && !empty($_GET['id']) )
                    if ($item['importe'] > 0)
                    {
                      $a = round(($item['importe']/1.21),2);
-                     echo money_format('%#10.2n', $a);
+                     echo number_format($a, 2, ',', '.');
                      
                      $neto = $neto + $a;
                    }
@@ -138,14 +140,14 @@ if( isset($_GET['id']) && !empty($_GET['id']) )
                   if ($porcentaje > 0)
                    {
                       $a = round((($neto*$porcentaje)/100),2);
-                      echo money_format('%#10.2n', $a);
+                      echo number_format($a, 2, ',', '.');
                      
                    }
                   ?> 
               </td>
              <!--td> x </td-->
           </tr>
-          <?
+          <?php
            }//fin del while
           ?>
           </tbody>
@@ -192,7 +194,7 @@ if( isset($_GET['id']) && !empty($_GET['id']) )
 </div>
 
 
-<?
+<?php
  }
 ?>
 <script>
