@@ -33,7 +33,7 @@ body { font-size:10px; }
 
 </style>
 
-<?
+<?php
 
 function cambiaf_mysql($fechadb)
 {
@@ -54,9 +54,9 @@ if( isset($_GET['idhrint']) && !empty($_GET['idhrint']) )
 
  <div class="container">
  <div class="row">
-  <h3>Hoja de Ruta Interna Nº : <?echo $idhrint;?> Liquidación Fletero</h3>
+  <h3>Hoja de Ruta Interna Nº : <?php echo $idhrint;?> Liquidación Fletero</h3>
   <div class="col-xs-12">
-   <?
+   <?php
      $listado = $objeto->cabecerahri($idhrint);
 
      while( $item = mysqli_fetch_array($listado))
@@ -66,22 +66,22 @@ if( isset($_GET['idhrint']) && !empty($_GET['idhrint']) )
       <div class="row">
 
         <div class="col-xs-4">
-        <label> Fecha : <?echo $item['fecha'];?> </label>
+        <label> Fecha : <?php echo $item['fecha'];?> </label>
         </div>
          <div class="col-xs-4">
-        <label> Chofer : <?echo $item['nombrechofer'];?> </label>
+        <label> Chofer : <?php echo $item['nombrechofer'];?> </label>
          </div>
          <div class="col-xs-4">
-        <label> Patente Camion : <?echo $item['patentecamion'];?> </label>
+        <label> Patente Camion : <?php echo $item['patentecamion'];?> </label>
         </div>
 
         <div class="col-xs-4">
-        <label> Porcentaje : <?echo $item['porcentaje'];?> </label>
+        <label> Porcentaje : <?php echo $item['porcentaje'];?> </label>
         </div>
 
       </div>
 
-      <?
+      <?php
 
         $porcentaje=$item['porcentaje'];
 
@@ -130,8 +130,8 @@ if( isset($_GET['idhrint']) && !empty($_GET['idhrint']) )
               <td><?php echo $item['remitose'];?></td>
               <td>
                   <?php
-                  echo money_format('%#10.2n',$item['importe']);
-                  $total_importe=$total_importe+$item['importe'];
+                  echo number_format($item['importe'], 2, ',', '.');
+                  echo number_format($item['importe'], 2, ',', '.');
                   ?>
               </td>
               <td>
@@ -139,7 +139,7 @@ if( isset($_GET['idhrint']) && !empty($_GET['idhrint']) )
                    if ($item['importe'] > 0)
                    {
                      $a = round(($item['importe']/1.21),2);
-                     echo money_format('%#10.2n',$a);
+                     echo number_format($a, 2, ',', '.');
                      $neto = $neto + $a;
                       $total_2=$total_2+$a;
                    }
@@ -150,28 +150,28 @@ if( isset($_GET['idhrint']) && !empty($_GET['idhrint']) )
                   if ($porcentaje > 0 and $a > 0)
                    {
                      $a = round((($neto*$porcentaje)/100),2);
-                     echo money_format('%#10.2n',$a);
+                     echo number_format($a, 2, ',', '.');
                      $sumatoria=$sumatoria+$a;
                    }
-                    else echo money_format('%#10.2n',$a);
+                    else echo number_format($a, 2, ',', '.');
                   ?> 
               </td>
             </tr>
            
-          <?
+          <?php
            }
           ?>
           <tr>
           <td colspan="6">TOTALES :</td>
-          <td><?php echo money_format('%#12.2n',$total_importe);?></td>
-          <td><?php echo money_format('%#12.2n',$total_2);?></td>
-          <td><?php echo money_format('%#12.2n',$sumatoria);?></td>
+          <td><?php echo number_format($total_importe, 2, ',', '.');?></td>
+          <td><?php echo number_format($total_2, 2, ',', '.');?></td>
+          <td><?php echo number_format($sumatoria, 2, ',', '.');?></td>
           </tr>
           </tbody>
          </table>
         <!--fin listado remitos-->
 </div>
-<?
+<?php
 echo '<script> window.print();</script>';
 ?>
 
@@ -180,5 +180,5 @@ echo '<script> window.print();</script>';
  <a href="listado.php">Listado</a>
 </div>
 </div>
-<?}?>
+<?php } ?>
 

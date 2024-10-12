@@ -43,7 +43,7 @@ body { font-size:10px; }
 
    <select name="idchofer" id="idchofer" class="form-control" required>
     <option value="" >Seleccionar HRI...</option>
-    <?  
+    <?php  
      $sql="SELECT hojarutainterna.`id` AS id_hri, chofer.`nombre` AS chofer
           FROM `hojarutainterna`
           INNER JOIN `chofer` 
@@ -52,8 +52,8 @@ body { font-size:10px; }
      while( $item = mysqli_fetch_array($listado))
      {
      ?>
-      <option value="<?echo $item['id_hri'];?>"> <?echo $item['id_hri'];?> : <?echo $item['chofer'];?> </option>
-      <?
+      <option value="<?php echo $item['id_hri'];?>"> <?php echo $item['id_hri'];?> : <?php echo $item['chofer'];?> </option>
+      <?php
     } 
     ?>
     </select> 

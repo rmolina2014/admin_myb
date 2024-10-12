@@ -161,7 +161,7 @@ ON (`hojarutainterna`.`idcamion` = `camion`.`id`)
                 INNER JOIN `hojarutainterna` 
                     ON (`detalleinterna`.`idinterna` = `hojarutainterna`.`id`)
                 INNER JOIN `chofer` 
-                    ON (`hojarutainterna`.`idchofer` = `chofer`.`id`)                  WHERE idinterna =".$idhrint;
+                    ON (`hojarutainterna`.`idchofer` = `chofer`.`id`) WHERE idinterna =".$idhrint;
                     
      $listado = consulta_mysql($sql);
      return $listado;

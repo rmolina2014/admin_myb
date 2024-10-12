@@ -2,7 +2,7 @@
 
 require_once 'liquidacionfletero.php';
 
-/*** CALCULAR LA LIQUIDACION FLETERO PARA VARIA HRI ***/
+/*** CALCULAR LA LIQUIDACION FLETERO PARA VARIAS HRI ***/
 
 $objeto = new liquidacionfletero();
 
@@ -155,18 +155,18 @@ body { font-size:10px; }
               <td><?php echo $item['remitose'];?></td>
               <td>
                   <?php
-                  echo money_format('%#10.2n',$item['importe']);
-                  $total_importe=$total_importe+$item['importe'];
+                  echo number_format($item['importe'], 2, ',', '.');
+                  $total_importe = $total_importe + $item['importe'];
                   ?>
               </td>
               <td>
                 <?php
                    if ($item['importe'] > 0)
                    {
-                     $a = round(($item['importe']/1.21),2);
-                     echo money_format('%#10.2n',$a);
+                     $a = round(($item['importe']/1.21), 2);
+                     echo number_format($a, 2, ',', '.');
                      $neto = $neto + $a;
-                      $total_2=$total_2+$a;
+                     $total_2 = $total_2 + $a;
                    }
                 ?>
               </td>
@@ -175,10 +175,10 @@ body { font-size:10px; }
                   if ($porcentaje > 0 and $a > 0)
                    {
                      $a = round((($neto*$porcentaje)/100),2);
-                     echo money_format('%#10.2n',$a);
+                     echo number_format($a, 2, ',', '.');
                      $sumatoria=$sumatoria+$a;
                    }
-                    else echo money_format('%#10.2n',$a);
+                    else echo number_format($a, 2, ',', '.');
                   ?> 
               </td>
             </tr>
@@ -189,9 +189,9 @@ body { font-size:10px; }
 
           <tr>
           <td colspan="6">TOTALES :</td>
-          <td><?php echo money_format('%#12.2n',$total_importe);?></td>
-          <td><?php echo money_format('%#12.2n',$total_2);?></td>
-          <td><?php echo money_format('%#12.2n',$sumatoria);?></td>
+          <td><?php echo number_format($total_importe, 2, ',', '.');?></td>
+          <td><?php echo number_format($total_2, 2, ',', '.');?></td>
+          <td><?php echo number_format($sumatoria, 2, ',', '.');?></td>
           </tr>
           </tbody>
          </table>
