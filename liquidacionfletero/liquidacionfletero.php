@@ -203,6 +203,13 @@ ON (`hojarutainterna`.`idcamion` = `camion`.`id`)
      return $listado;
     }
 
+    public function obtenerDatosLiquidacion($id)
+    {
+        $sql = "SELECT * FROM hojarutainterna WHERE id = $id";
+        $datos = consulta_mysql($sql);
+        return mysqli_fetch_assoc($datos);
+    }
+
 
 
  
