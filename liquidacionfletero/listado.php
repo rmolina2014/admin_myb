@@ -77,6 +77,12 @@ include '../cabecera.php';
                     <a href="liquidacion.php?id=<?php echo $item['numero']; ?>" class="btn btn-primary btn-sm">Liquidación</a>
                   <?php
                   }
+                  if ($item['porcentaje_fletero'] >0 and $item['importe_fletero'] > 0  )
+                  {
+                    ?>
+                    <a href="liquidacion.php?id=<?php echo $item['numero'];?>" class="btn btn-primary btn-sm" > Editar</a>
+                    <?php
+                 }  
                   ?>
                 </td>
               </tr>
@@ -147,23 +153,23 @@ include '../cabecera.php';
       $(".liquidacionCheck").prop('checked', $(this).prop('checked'));
     });
 
+    // Guardar el valor de los checkboxes seleccionados en una lista
+    var selectedLiquidaciones = [];
+    $(".liquidacionCheck").click(function() {
+      if ($(this).prop('checked')) {
+        selectedLiquidaciones.push($(this).val());
+      } else {
+        selectedLiquidaciones.splice(selectedLiquidaciones.indexOf($(this).val()), 1);
+      }
+    });
+
     // Generar resumen para múltiples liquidaciones
     $("#generarResumenMultiple").click(function() {
-      var selectedLiquidaciones = [];
-      $(".liquidacionCheck:checked").each(function() {
-        selectedLiquidaciones.push($(this).val());
-      });
-
       if (selectedLiquidaciones.length > 0) {
-        // Abrir una nueva ventana con el resumen para imprimir
-        //window.open('imprimir_resumen.php?ids=' + selectedLiquidaciones.join(','), '_blank');
-        console.log(selectedLiquidaciones);
         $.ajax({
           url: 'imprimir_resumen.php',
           method: 'POST',
-          data: JSON.stringify(selectedLiquidaciones),
-          contentType: 'application/json',
-          dataType: 'json',
+          data: { lista: selectedLiquidaciones },
           success: function(response) {
             if (response.success) {
               var newWindow = window.open('', '_blank');

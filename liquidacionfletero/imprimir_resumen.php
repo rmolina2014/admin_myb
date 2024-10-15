@@ -1,11 +1,18 @@
-<?php
+<?php 
+// Recibir la lista enviada por AJAX
+$lista = $_POST['lista'];
 
-// Leer los datos JSON de la entrada
-$json_input = file_get_contents('php://input');
+// Convertir la lista en un array si es necesario
+//$lista1 = json_decode($lista, true);
 
-// Decodificar los datos JSON
-$data = json_decode($json_input, true);
+// recorrelista
 
-// Mostrar los datos en formato JSON
-header('Content-Type: application/json');
-echo $data;
+
+// Procesar la lista (por ejemplo, guardarla en una base de datos o mostrarla)
+foreach ($lista as $elemento) {
+    echo "Elemento: " . $elemento . "<br>";
+}
+
+// También puedes devolver una respuesta al cliente
+echo "Lista recibida y procesada correctamente.";
+?>
