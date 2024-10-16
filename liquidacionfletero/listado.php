@@ -70,19 +70,18 @@ include '../cabecera.php';
                   if ($item['porcentaje_fletero'] != '' && $item['importe_fletero'] > 0) {
                   ?>
                     <a href="imprimir_liquidacion.php?idhrint=<?php echo $item['numero']; ?>" class="btn btn-primary btn-sm">Imprimir</a>
-                    
+
                   <?php
                   } else {
                   ?>
                     <a href="liquidacion.php?id=<?php echo $item['numero']; ?>" class="btn btn-primary btn-sm">Liquidación</a>
                   <?php
                   }
-                  if ($item['porcentaje_fletero'] >0 and $item['importe_fletero'] > 0  )
-                  {
-                    ?>
-                    <a href="liquidacion.php?id=<?php echo $item['numero'];?>" class="btn btn-primary btn-sm" > Editar</a>
-                    <?php
-                 }  
+                  if ($item['porcentaje_fletero'] > 0 and $item['importe_fletero'] > 0) {
+                  ?>
+                    <a href="liquidacion.php?id=<?php echo $item['numero']; ?>" class="btn btn-primary btn-sm"> Editar</a>
+                  <?php
+                  }
                   ?>
                 </td>
               </tr>
@@ -169,12 +168,18 @@ include '../cabecera.php';
         $.ajax({
           url: 'imprimir_resumen.php',
           method: 'POST',
-          data: { lista: selectedLiquidaciones },
+          data: {
+            lista: selectedLiquidaciones
+          },
           success: function(response) {
+            // recibir la respuesta en formato json
+            response = JSON.parse(response);
+            console.log(response);
             if (response.success) {
               var newWindow = window.open('', '_blank');
               newWindow.document.write(response.html);
               newWindow.document.close();
+              newWindow.print(); // Abre la ventana de impresión automáticamente
             } else {
               alert("Error: " + response.message);
             }
@@ -188,6 +193,7 @@ include '../cabecera.php';
         alert("Por favor, seleccione al menos una liquidación.");
       }
     });
+
   }); // Cierre de $(document).ready
 </script>
 
