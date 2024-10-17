@@ -131,7 +131,7 @@ if( isset($_GET['idhrint']) && !empty($_GET['idhrint']) )
               <td>
                   <?php
                   echo number_format($item['importe'], 2, ',', '.');
-                  echo number_format($item['importe'], 2, ',', '.');
+                  //echo number_format($item['importe'], 2, ',', '.');
                   ?>
               </td>
               <td>

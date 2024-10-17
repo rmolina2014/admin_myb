@@ -210,15 +210,15 @@ ON (`hojarutainterna`.`idcamion` = `camion`.`id`)
         return mysqli_fetch_assoc($datos);
     }
 
-/**
- * Obtiene un resumen de una hoja de ruta interna especifica por ID.
- *
- * Esta funci n ejecuta una consulta SQL para obtener detalles sobre una hoja de ruta interna
- * particular, incluyendo su fecha, chofer asociado, porcentaje para el fletero y montos de importe.
- *
- * @param int $id El ID de la hoja de ruta interna a obtener.
- * @return array|false Un arreglo asociativo con los detalles del resumen, o false en caso de error.
- */
+    /**
+     * Obtiene un resumen de una hoja de ruta interna especifica por ID.
+     *
+     * Esta funci n ejecuta una consulta SQL para obtener detalles sobre una hoja de ruta interna
+     * particular, incluyendo su fecha, chofer asociado, porcentaje para el fletero y montos de importe.
+     *
+     * @param int $id El ID de la hoja de ruta interna a obtener.
+     * @return array|false Un arreglo asociativo con los detalles del resumen, o false en caso de error.
+     */
     public function listaResumen($id)
     {
         $sql = "SELECT
@@ -226,13 +226,9 @@ hojarutainterna.`id` AS id,
 hojarutainterna.`fecha` AS fecha,
 chofer.`nombre` AS chofer,
 hojarutainterna.`porcentaje_fletero` AS porcentaje,
-hojarutainterna.`importe_fletero` AS hri_importe_fletero,
-detalleinterna.`importe` AS detalle_importe,
-detalleinterna.`importefletero` AS detalle_importefletero
+hojarutainterna.`importe_fletero` AS hri_importe_fletero
 FROM
-    `detalleinterna`
-    INNER JOIN `hojarutainterna` 
-        ON (`detalleinterna`.`idinterna` = `hojarutainterna`.`id`)
+    `hojarutainterna`        
     INNER JOIN `chofer` 
         ON (`chofer`.`id` = `hojarutainterna`.`idchofer`) WHERE hojarutainterna.`id`=" . $id;
         $datos = consulta_mysql($sql);

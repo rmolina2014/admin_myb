@@ -39,7 +39,7 @@ include '../cabecera.php';
         <table id="listado" class="table table-striped table-bordered">
           <thead>
             <tr>
-              <th><input type="checkbox" id="selectAll" /> Seleccionar todos</th>
+              <th></th>
               <th>Fecha</th>
               <th>Chofer</th>
               <th>Patente</th>
@@ -174,11 +174,11 @@ include '../cabecera.php';
           success: function(response) {
             // recibir la respuesta en formato json
             response = JSON.parse(response);
-            console.log(response);
             if (response.success) {
               var newWindow = window.open('', '_blank');
               newWindow.document.write(response.html);
               newWindow.document.close();
+              newWindow.focus();
               newWindow.print(); // Abre la ventana de impresión automáticamente
             } else {
               alert("Error: " + response.message);
