@@ -222,15 +222,19 @@ ON (`hojarutainterna`.`idcamion` = `camion`.`id`)
     public function listaResumen($id)
     {
         $sql = "SELECT
-hojarutainterna.`id` AS id,
-hojarutainterna.`fecha` AS fecha,
-chofer.`nombre` AS chofer,
-hojarutainterna.`porcentaje_fletero` AS porcentaje,
-hojarutainterna.`importe_fletero` AS hri_importe_fletero
-FROM
-    `hojarutainterna`        
-    INNER JOIN `chofer` 
-        ON (`chofer`.`id` = `hojarutainterna`.`idchofer`) WHERE hojarutainterna.`id`=" . $id;
+    hojarutainterna.`id` AS id,
+    hojarutainterna.`fecha` AS fecha,
+    chofer.`nombre` AS chofer,
+    hojarutainterna.`porcentaje_fletero` AS porcentaje,
+    hojarutainterna.`importe_fletero` AS hri_importe_fletero
+    FROM
+        `hojarutainterna`
+        INNER JOIN `chofer`
+            ON (`chofer`.`id` = `hojarutainterna`.`idchofer`)
+    WHERE
+        hojarutainterna.`id` = $id
+    ORDER BY
+        hojarutainterna.`fecha` ASC";
         $datos = consulta_mysql($sql);
         return mysqli_fetch_assoc($datos);
     }

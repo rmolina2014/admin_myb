@@ -189,10 +189,18 @@ include '../cabecera.php';
             alert("Hubo un error al generar el resumen. Por favor, inténtalo de nuevo.");
           }
         });
+      deseleccionarTodos();
+
       } else {
         alert("Por favor, seleccione al menos una liquidación.");
       }
     });
+
+    // Función para deseleccionar todos los checkbox
+    function deseleccionarTodos() {
+      $(".liquidacionCheck").prop('checked', false);
+      selectedLiquidaciones = [];
+    }
 
   }); // Cierre de $(document).ready
 </script>

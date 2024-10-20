@@ -43,26 +43,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lista'])) {
             margin: 10px 0;
         }</style></head><body>';
     $htmlContent .= '<h1>Resumen de Liquidaciones</h1>';
-    $htmlContent .= '<table><thead><tr><th>HRI</th><th>Fecha</th><th>Chofer</th><th>Porcentaje</th><th>Importe HRI</th><th>Importe Fletero</th></tr></thead><tbody>';
+    $htmlContent .= '<table><thead><tr><th>HRI</th><th>Fecha</th><th>Chofer</th><th>Porcentaje</th><th>Importe Fletero</th></tr></thead><tbody>';
     $sumatoria = 0;
     foreach ($selectedLiquidaciones as $liquidacion) {
         $listado = $objecto->listaResumen($liquidacion);
         if (is_array($listado)) {
-            $calculo_importe = calcularImporteFletero($listado['hri_importe_fletero'], $listado['porcentaje']);
-            $sumatoria += $calculo_importe;
+            //$calculo_importe = calcularImporteFletero($listado['hri_importe_fletero'], $listado['porcentaje']);
+            $sumatoria += $listado['hri_importe_fletero'];
             $htmlContent .= "<tr>";
             $htmlContent .= "<td>" . htmlspecialchars($listado['id']) . "</td>";
             $htmlContent .= "<td>" . htmlspecialchars(date('d-m-Y', strtotime($listado['fecha']))) . "</td>";
             $htmlContent .= "<td>" . htmlspecialchars($listado['chofer']) . "</td>";
             $htmlContent .= "<td>" . htmlspecialchars($listado['porcentaje']) . "%</td>";
             $htmlContent .= "<td>$ " . number_format($listado['hri_importe_fletero'], 2, ',', '.') . "</td>";
-            $htmlContent .= "<td>$ " . number_format($calculo_importe, 2, ',', '.') . "</td>";
+           // $htmlContent .= "<td>$ " . number_format($calculo_importe, 2, ',', '.') . "</td>";
             $htmlContent .= "</tr>";
         } else {
             $htmlContent .= "<tr><td colspan='6'>Error al obtener los detalles de la liquidaci n " . htmlspecialchars($liquidacion) . "</td></tr>";
         }
     }
-    $htmlContent .= "<tr><td></td><td></td><td></td><td></td><td>Sumatoria</td><td >$ ". number_format($sumatoria, 2, ',', '.') . "</td></tr>";
+    $htmlContent .= "<tr><td></td><td></td><td></td><td>Sumatoria</td><td >$ ". number_format($sumatoria, 2, ',', '.') . "</td></tr>";
     $htmlContent .= '</tbody></table>';
     $htmlContent .= '</body></html>';
     // Devolver la respuesta en formato JSON
